@@ -1,4 +1,4 @@
-import { ChevronRightIcon, TrashIcon } from "lucide-react";
+import { ChevronRightIcon, TrashIcon, CheckIcon } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import Button from "./Button";
 
@@ -9,6 +9,8 @@ function Tasks(props) {
     const query = new URLSearchParams();
     query.set("title", task.title);
     query.set("description", task.description);
+    query.set("date", task.date);
+    query.set("time", task.time);
     // Navega para a página de detalhes da tarefa com os parâmetros de consulta
     navigate(`/task?${query.toString()}`);
   }
@@ -20,10 +22,11 @@ function Tasks(props) {
           <li key={task.id} className="flex gap-2">
             <button
               onClick={() => props.onTaskClick(task.id)}
-              className={`bg-slate-400 text-left w-full text-white p-2 rounded-md ${
+              className={`bg-slate-400 text-left w-full flex items-center gap-2 text-white p-2 rounded-md ${
                 task.isCompletd ? "line-through" : ""
               }`}
             >
+              {task.isCompletd ? <CheckIcon /> : ""}
               {task.title}
             </button>
             <Button onClick={() => onSeeDetailsClick(task)}>

@@ -13,7 +13,7 @@ function App() {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
 
-  useEffect(() => {
+  /*  useEffect(() => {
     async function fetchTasks() {
       //chama a api
       const response = await fetch(
@@ -30,7 +30,7 @@ function App() {
     // Chama a função para buscar as tarefas
     // fetchTasks();
   }, []);
-
+ */
   function onTaskClick(taskId) {
     const newTasks = tasks.map((task) => {
       // Preciso atualizar o estado da tarefa
@@ -56,6 +56,8 @@ function App() {
       id: v4(),
       title,
       description,
+      date: new Date().toLocaleDateString(),
+      time: new Date().toLocaleTimeString(),
       isCompletd: false,
     };
     setTasks([...tasks, newTask]);
