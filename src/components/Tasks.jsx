@@ -18,25 +18,32 @@ function Tasks(props) {
   return (
     <div>
       <ul className="space-y-4 p-6 bg-slate-200 rounded-md shadow">
-        {props.tasks.map((task) => (
-          <li key={task.id} className="flex gap-2">
-            <button
-              onClick={() => props.onTaskClick(task.id)}
-              className={` text-left w-full flex items-center gap-2 text-white p-2 rounded-md ${
-                task.isCompletd ? "line-through bg-red-500" : "bg-slate-400"
-              }`}
-            >
-              {task.isCompletd ? <CheckIcon /> : ""}
-              {task.title}
-            </button>
-            <Button onClick={() => onSeeDetailsClick(task)}>
-              <ChevronRightIcon />
-            </Button>
-            <Button onClick={() => props.onDeleteTaskClick(task.id)}>
-              <TrashIcon />
-            </Button>
-          </li>
-        ))}
+        {[...props.tasks] // faz uma cópia rasa para não modificar props
+          .sort((a, b) =>
+            a.isCompletd === true ? 1 : b.isCompletd === true ? -1 : 0
+          ) // move "true" para o final
+          .map((task) => (
+            <li key={task.id} className="flex gap-2">
+              <button
+                onClick={() => props.onTaskClick(task.id)}
+                className={` text-left w-full flex items-center gap-2 text-white p-2 rounded-md ${
+                  task.isCompletd ? "line-through bg-red-500" : "bg-slate-400"
+                }`}
+              >
+                {task.isCompletd ? <CheckIcon /> : ""}
+                <div className="flex-col">
+                  <p className="text-xl">Titulo: {task.title}</p>
+                  <span className="text-xs">Descrição: {task.description}</span>
+                </div>
+              </button>
+              <Button onClick={() => onSeeDetailsClick(task)}>
+                <ChevronRightIcon />
+              </Button>
+              <Button onClick={() => props.onDeleteTaskClick(task.id)}>
+                <TrashIcon />
+              </Button>
+            </li>
+          ))}
       </ul>
     </div>
   );

@@ -17,9 +17,9 @@ function TaskPage() {
         <div className="flex justify-center relative md-6">
           <button
             onClick={() => navigate(-1)}
-            className="absolute left-0 top-1 bottom-0 bg-slate-400 text-white border rounded-md"
+            className="absolute left-0 top-1 bottom-0 bg-slate-400 text-white border rounded-md w-10 h-10 flex items-center justify-center"
           >
-            <ChevronLeftIcon />
+            <ChevronLeftIcon className="w-7 h-7" />
           </button>
           <Title>Detalhes da Tarefa</Title>
         </div>
