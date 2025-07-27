@@ -22,8 +22,8 @@ function Tasks(props) {
           <li key={task.id} className="flex gap-2">
             <button
               onClick={() => props.onTaskClick(task.id)}
-              className={`bg-slate-400 text-left w-full flex items-center gap-2 text-white p-2 rounded-md ${
-                task.isCompletd ? "line-through" : ""
+              className={` text-left w-full flex items-center gap-2 text-white p-2 rounded-md ${
+                task.isCompletd ? "line-through bg-red-500" : "bg-slate-400"
               }`}
             >
               {task.isCompletd ? <CheckIcon /> : ""}
